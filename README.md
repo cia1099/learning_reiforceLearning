@@ -1,12 +1,17 @@
-> ISBN： 9789865021900 深度強化學習
-> http://books.gotop.com.tw/download/ACD017700
+> 《實戰人工智慧之深度強化學習》ISBN：9789865021900 http://books.gotop.com.tw/download/ACD017700
 
 ### Sarsa & Q-Learning
 Sarsa的動作價值函數Q的更新公式為
+<div align=center>
+
 $Q(s_t,a_t)=Q(s_t,a_t)+ \eta\times(R_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s_t,a_t))$
+</div>
 
 Q-Learnig的更新公式為
-$Q(s_t,a_t)=Q(s_t,a_t)+ \eta\times(R_{t+1}+\gamma \max_a(Q(s_{t+1},a)-Q(s_t,a_t))$
+<div align=center>
+
+$Q(s_t,a_t)=Q(s_t,a_t)+ \eta\times(R_{t+1}+\gamma \underset{a}{\max} (Q(s_{t+1},a)-Q(s_t,a_t))$
+</div>
 
 * Sarsa演算法會在更新時計算下一個動作$a_{t+1}$，然後用來更新函數，但Q-learning則是以狀態$s_{t+1}$的動作價值函數的最大值更新函數。
 * Sarsa是使用下個動作$a_{t+1}$更新動作價值函數Q，所以特徵是Q的更新方式取決於計算$a_{t+1}$的策略。這種特徵又稱為**On-Policy**型。
