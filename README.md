@@ -2,11 +2,8 @@
 
 ### Sarsa & Q-Learning
 Sarsa的動作價值函數Q的更新公式為
-<div align=center>
-  
-$Q(s_t,a_t)=Q(s_t,a_t)+ \eta\times(R_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s_t,a_t))$
 
-</div>
+Q(s_t,a_t)=Q(s_t,a_t)+ \eta\times(R_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s_t,a_t))
 
 Q-Learnig的更新公式為
 <div align=center>
