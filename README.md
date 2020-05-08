@@ -4,12 +4,12 @@
 Sarsa的動作價值函數Q的更新公式為
 <div align=center>
 
-$Q(s_t,a_t)=Q(s_t,a_t)+ \eta\times(R_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s_t,a_t))$
+![](http://latex.codecogs.com/gif.latex?\Q(s_t,a_t)=Q(s_t,a_t)+ \eta\times(R_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s_t,a_t)))
 </div>
 Q-Learnig的更新公式為
 <div align=center>
 
-$Q(s_t,a_t)=Q(s_t,a_t)+ \eta\times(R_{t+1}+\gamma \underset{a}{\max} (Q(s_{t+1},a)-Q(s_t,a_t))$
+![](http://latex.codecogs.com/gif.latex?\Q(s_t,a_t)=Q(s_t,a_t)+ \eta\times(R_{t+1}+\gamma \underset{a}{\max} (Q(s_{t+1},a)-Q(s_t,a_t)))
 </div>
 
 * Sarsa演算法會在更新時計算下一個動作$a_{t+1}$，然後用來更新函數，但Q-learning則是以狀態$s_{t+1}$的動作價值函數的最大值更新函數。
