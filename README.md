@@ -35,6 +35,14 @@ pip uninstall pyglet -y
 pip install pyglet==1.2.4
 conda install -c conda-forge ffmpeg
 #[p.70]
+pip install tqdm #確認for陳述式進度的套件
+pip install atari-py
+#安裝OpenAI的gym執行程式所需套件[p.210]
+mkdir breakout
+cd breakout
+git clone http://github.com/openai/baselines.git
+cd baselines
+pip install -e .
 ```
 
 ### OpenAI:cartPole game
