@@ -30,9 +30,13 @@ References:
 ```python
 pip install gym
 pip install matplotlib
-pip install JSAnimation
-pip uninstall pyglet -y
-pip install pyglet==1.2.4
+pip install JSAnimation //failure
+# pip uninstall pyglet -y
+# pip install pyglet==1.4.5
+# git clone https://github.com/jakevdp/JSAnimation
+# cd JSAnimation
+# python setup.py install
+
 conda install -c conda-forge ffmpeg
 #[p.70]
 pip install tqdm #確認for陳述式進度的套件
@@ -42,7 +46,38 @@ mkdir breakout
 cd breakout
 git clone http://github.com/openai/baselines.git
 cd baselines
-pip install -e .
+#pip install -e . #會安裝opencv一般版，使得opencv-contrib失效，要砍掉重新安裝才能恢復
+```
+matplotlib最新版本與JSAnimation的版本會有不兼容，要修改JSAnimation的名稱或將matplotlib降版本至3.1.3；需修正的地方有：
+```python
+''' 
+yourPythonSystemPath/JSAnimation/html_writer.py at line 324
+which solved connot find self._temp_names 
+'''
+with open(self.outfile, 'w') as of:
+            of.write(JS_INCLUDE)
+            of.write(DISPLAY_TEMPLATE.format(id=self.new_id(),
+                                            #  Nframes=len(self._temp_names),
+                                             Nframes=len(self._temp_paths),
+                                             fill_frames=fill_frames,
+                                             interval=interval,
+                                             icons=_Icons(),
+                                             **mode_dict))
+#新版的(>=3.2.0)matplotlib.FileMovieWriter成員叫做"self._temp_path"
+#舊版本的(<3.2.0)matplotlib.FileMovieWriter成員叫"self._temp_names"
+
+''' 
+yourPythonSystemPath/matplotlib/animation.py at line 399
+which solve the TypeError
+ref https://stackoverflow.com/questions/57911170/typeerror-a-bytes-like-object-is-required-not-str-with-funcanimation-how-ca
+'''
+try:
+    out = TextIOWrapper(BytesIO(out)).read()
+    err = TextIOWrapper(BytesIO(err)).read()
+except:
+    out = TextIOWrapper(BytesIO(out.encode('utf-8'))).read()
+    err = TextIOWrapper(BytesIO(err.encode('utf-8'))).read()
+
 ```
 
 ### OpenAI:cartPole game
